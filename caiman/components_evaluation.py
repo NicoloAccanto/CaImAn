@@ -336,7 +336,7 @@ def evaluate_components_CNN(A,
     else:
         tf_in = loaded_model.get_tensor_by_name('prefix/conv2d_20_input:0')
         tf_out = loaded_model.get_tensor_by_name('prefix/output_node0:0')
-        with tf.Session(graph=loaded_model) as sess:
+        with tf.compat.v1.Session(graph=loaded_model) as sess:
             predictions = sess.run(tf_out, feed_dict={tf_in: final_crops[:, :, :, np.newaxis]})
             sess.close()
 
